@@ -1,50 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
-import io from 'socket.io-client';
-
-const socket = io('http://localhost:8000');
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
-function App() {
+import { useEffect, useState } from 'react'
+import './App.css'
 
+// React Components
+import Header from './components/Header'
+import CommandCenter from './components/CommandCenter'
 
-  const [temp, setTemp] = useState(null);
-  const [ultrasonic, setUltrasonic] = useState(null);
-  const [humidity, setHumidity] = useState(null);
+// React Pages
+import About from './pages/About'
+import Home from './pages/Home'
+import Progress from './pages/Progress'
 
-  useEffect(() => {
-    // Listen for temperature updates
-    socket.on('temp', (data) => {
-      setTemp(data);
-    });
-
-    // Listen for ultrasonic updates
-    socket.on('ultrasonic', (data) => {
-      setUltrasonic(data);
-    });
-
-    socket.on('humidity', (data) => {
-      setHumidity(data);
-    });
-
-    return () => {
-      socket.off('temp');
-      socket.off('ultrasonic');
-      socket.off('humidity')
-    };
-  }, []);
-
-  const sendDirection = (direction) => {
-    socket.emit('send-direction', direction);
-  };
-
-  const sendArmValue = (value) => {
-    socket.emit('send-arm-value', value);
-  };
-
-  
+const App = () => {
   return (
-    <div className="App">
-      <p>Write your code here!</p>
+    <div className='App'>
+      <BrowserRouter>
+        <Routes> 
+          <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/progress" element={<Progress />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
