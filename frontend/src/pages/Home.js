@@ -5,7 +5,9 @@ const Home = () => {
     return (
         <div>
             <Header />
-            <CommandCenter />
+            <div className='body'>
+                <CommandCenter />   
+            </div>
         </div>
     )
 }

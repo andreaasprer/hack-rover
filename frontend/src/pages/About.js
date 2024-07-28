@@ -1,10 +1,9 @@
 import Header from '../components/Header'
 import './about.css'
 
-const MemberCard = ({ image, name, major, role }) => {
+const MemberCard = ({ name, major, role }) => {
     return (
         <div className="member-card">
-            <img src={image}  alt={`${name}'s picture`} className="member-image"/>
             <h3>{name}</h3>
             <p><strong>Major:</strong> {major}</p>
             <p><strong>Role:</strong> {role}</p>

@@ -16,7 +16,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4rem;
+    padding: .5rem 4rem;
     border-bottom: solid rgba(128, 128, 128, 0.267);
 }
 
@@ -34,14 +34,14 @@ header a {
 }
 
 .nav__links a {
-    color: black;
+    color: rgb(47, 102, 144);
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
 }
 
 .nav__links a:hover {
-    color: rgba(0, 0, 0, 0.596);
+    color: rgba(0, 0, 0, 0.849);
 }
 
 
@@ -50,29 +50,36 @@ header a {
   height: 100vh;
   width: 100%;
   display: flex;
+  background-color: #2F6690;
+  color: #f5f8f2;
 }
 .left {
-  background-color: #f7ede2;
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
+
 }
 
 .right {
-  background-color: #84a59d;
+  background-color: #91a3b1;
   width: 50%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
 }
 
+/* .right-children {
+  
+} */
 .Key {
-  width: 80px;
-  height: 80px;
-  background-color: #cfd2cd; 
+  width: 65px;
+  height: 65px;
+  background-color: #f8f8f8; 
   text-align: center; 
   border: 2px solid;
   border-radius: 8px; 
@@ -95,4 +102,16 @@ header a {
 .top-keys, .bottom-keys {
   display: flex;
   justify-content: center;
+}
+
+table, th, td {
+  border: 3px solid rgb(83, 83, 83);
+  border-collapse: collapse;
+  padding: 20px
+}
+
+
+/* styling for sliders in command center */
+.ArmDisplay {
+  padding: 20px;
 }

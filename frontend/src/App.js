@@ -1,12 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-
-import { useEffect, useState } from 'react'
 import './App.css'
-
-// React Components
-import Header from './components/Header'
-import CommandCenter from './components/CommandCenter'
 
 // React Pages
 import About from './pages/About'
@@ -16,6 +9,7 @@ import Progress from './pages/Progress'
 const App = () => {
   return (
     <div className='App'>
+      {/* using browser router to link all the separate react pages into the website */}
       <BrowserRouter>
         <Routes> 
           <Route index element={<Home />} />
