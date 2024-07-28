@@ -3,15 +3,12 @@ import { useEffect, useState, useRef } from 'react'
 // components
 import DataTable from './DataTable'
 import Key from './Key'
-import ArmSlider from './ArmSlider'
-import ClawSlider from './ClawSlider'
-
-
-
 
 // for connections to pico
 import io from 'socket.io-client'
 
+// link to camera stream
+const cameraURL = 'http://192.168.50.135:81/stream'
 const socket = io('http://localhost:8000');
 
 const CommandCenter = () => {
@@ -29,10 +26,43 @@ const CommandCenter = () => {
     const [ultrasonic, setUltrasonic] = useState(null)
     const [humidity, setHumidity] = useState(null)
 
+    // states for arm's servos
+    const [clawSliderValue, setClawSliderValue] = useState(50)
+    const [armSliderValue, setArmSliderValue] = useState(50)
+
+    // handler for claw and arm changes
+    const handleClawSlideChange = (event) => { 
+      setClawSliderValue(parseInt(event.target.value, 10)) 
+      // send instructions to pico
+      sendClawValue(clawSliderValue)
+    }
+    const handleArmSlideChange = (event) => { 
+      setArmSliderValue(parseInt(event.target.value, 10))
+      // send instructions to pico
+      sendArmValue(armSliderValue)
+    }
+
     // function to send direction from front end to backend
     const sendDirection = (direction) => {
       socket.emit('send-direction', direction)
     }
+
+    const sendArmValue = (value) => {
+      socket.emit('send-arm-value', value);
+    }
+
+    const sendClawValue = (value) => {
+      socket.emit('send-pinch-value', value);
+    };
+
+
+  // function to move for a short duration
+  const moveForDuration = (direction, duration = 250) => {
+    sendDirection(direction)
+    setTimeout(() => {
+      sendDirection("stop")
+    }, duration)
+  }
 
     useEffect(() => {
       // Listen for temperature updates
@@ -63,27 +93,27 @@ const CommandCenter = () => {
   
         if (event.key === 'w') {
             // TODO: SEND TO MQTT TO TURN ON MOTORS FORWARD
-            sendDirection("forward")
+            moveForDuration("forward")
             newKeyStates.w = true;
             console.log('up') 
         } else if (event.key === 'a') {
             // TODO: SEND TO MQTT TO MOVE COUNTER-CLOCKWISE
-            sendDirection("left")
+            moveForDuration("left")
             newKeyStates.a = true
             console.log('left')
         } else if (event.key === 's') {
             // TODO: SEND TO MQTT TO MOVE DOWN
-            sendDirection("back")
+            moveForDuration("backward")
             newKeyStates.s = true
             console.log('down')
         } else if (event.key === 'd') {
             // TODO: SENT TO MQTT TO MOVE CLOCKWISE
-            sendDirection("right")
+            moveForDuration("right")
             newKeyStates.d = true
             console.log('right')
         } else if (event.key === 'x') {
             // TODO: SEND TO MQTT TO STOP
-            sendDirection("stop")
+            moveForDuration("stop")
             newKeyStates.x = true
             console.log('stop')
         }
@@ -124,15 +154,52 @@ const CommandCenter = () => {
 
           <div className='ArmDisplay'>
             <h3>Arm Controls</h3>
-            <ArmSlider />
-            <ClawSlider />
+            
+            <div className='armSlider'>
+              <div className="card">
+                <div className="slider-container">
+                  <label>Set Arm Degree: </label>
+                  <input
+                    type="range"
+                    id='armSlider'
+                    min='0'
+                    max='180'
+                    step='1'
+                    value={armSliderValue}
+                    onChange={handleArmSlideChange}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className='clawSlider'>
+              <div className="card">
+                <div className="slider-container">
+                  <label>Set Claw Degree: </label>
+                  <input
+                    type="range"
+                    id='clawSlider'
+                    min='0'
+                    max='180'
+                    step='1'
+                    value={clawSliderValue}
+                    onChange={handleClawSlideChange}
+                  />
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
 
           </div>
         </div>
 
         <div className='right'>
-          {/* placeholder for camera display */}
-          <img src='black-box.jpg' width='60%'></img>
+          <iframe src={cameraURL} width={405} height={300}></iframe>
           <DataTable temp={temp} hmd={humidity} dis={ultrasonic}/>
         </div>
       </div>

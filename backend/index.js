@@ -111,7 +111,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on('send-pinch-value', (message) => {
-    console.log('Received arm value message from frontend:', message);
+    console.log('Received pinch value message from frontend:', message);
     client.publish("pinch", message.toString());
   });
 

@@ -1,4 +1,6 @@
 import Header from '../components/Header'
+import Logo from '../images/bruinNetLogo.PNG'
+import teamPhoto from '../images/teamPhoto.png'
 import './about.css'
 
 const MemberCard = ({ name, major, role }) => {
@@ -17,13 +19,17 @@ const About = () => {
             <Header />
             <div className="team-info">
                 <h2>Team BruinNet</h2>
-                <img src='bruinNetLogo.PNG' alt='bruinNetLogo' width='40%'></img>
+                <div className="images">
+                    <img src={Logo} alt='bruinNetLogo' width='40%'></img>
+                    <img src={teamPhoto} alt='bruinNetLogo' width='46%'></img>
+                </div>
+
             </div>
             <div className='members'>
                 <MemberCard name='Andrea Asprer' major='Computer Science' role='Web Developer' />
                 <MemberCard name='Biruk Kahsay' major='Civil Engineering' role='Circuit Code' />
                 <MemberCard name='Alyssa Agarie' major='Materials Science' role='CAD' />
-                <MemberCard name='Chen Chai' major='Electrical Engineering' role='Design and Circuit Schematics' />
+                <MemberCard name='Chen Chai' major='Electrical Engineering' role='Circuit Design and Circuit Schematics' />
             </div>
         </div>
     )
