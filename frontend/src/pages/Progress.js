@@ -36,8 +36,8 @@ const progressData = [
             {
                 name: 'Biruk',
                 tasks: [
-                    'Played catch up at the end of Day 1 due to attending orientation.',
-                    "Assisted in coding the program for the rover's wheels."
+                    'After missing the overwhelming majority of the first day due to orientation, I came back to play heavy catchup with my team for the last hour and a half of day one. I had some of my code covered for me by our remote participent Chen and my job was to build off of it with what little time I had remaining.',
+                    "Chen had completed the code for the motors to move when the pico was connected to my laptop, but he was not able to make them move left and right, only forward and back. So looking at his original code I modified it to the point where we would need to use two motor controllers for each set of wheels. One would have control over the front two wheels and the other would connect the back two wheels. We believed that using two motor controls would help solve our problem and we waited to test our hypothesis during the next day of the competition as we had run out of time."
                 ]
             },
             { 
@@ -76,8 +76,10 @@ const progressData = [
             {
                 name: 'Biruk',
                 tasks: [
-                    'First iteration of acrylic board caused size issues. We had trouble allocating space for all the parts on top of our acrylic base.',
-                    'Connected the tire motors to the motor controllers. Had multiple issues with syncing up the tire patterns such that the rover is going the right direction. Corrected this by modifying the code and switching the motors wires on the motor controller.',
+                    'After attempting and succeeding with the motor wheels moving through my laptop, I got started on our first iteration of the rover with a 21 by 14 cm wooden board. This sparked issues of sizing and fitting all of the planned necessities on the board with the wiring especially.',
+                    'A massive obstacle of the day was trying to communicate efficiently with our remote participant who was experienced with circuits. I had to follow his instructions and clearly show him every part of our pico and breadboard at the same time.',
+                    'After spending a lot of time on that, I attempted to fully complete the connection link to the MQTT broker. I followed the instructions exactly and was not able to get it working. I checked with other groups to see if they had established the link and did not find anyone yet. After asking help from the mentors, I was forced to read all of the code line by line and finally found that somehow I replaced one of the constants of mqtt_server with mqtt_user which has completely messed up the connection.',
+                    'After finally being able to link the MQTT website, I went back to wiring and was able to accurately have the motor and wheels working through the website by the end of the day.'
                 ]
             },
             { 
@@ -112,9 +114,9 @@ const progressData = [
             {
                 name: 'Biruk',
                 tasks: [
-                    "Replicated the wiring for the distance, temperature, and humidity sensors from Chen's circuit schematics.",
-                    "Assembled the components for the final iteration.",
-                    "Wrote the program for the sensors and sending them over to the frontend. Andrea and I had trouble figuring out how to send instructions to control the servo motors from the frontend back to the pico."
+                    "The last days obstacle was just a massive time crunch. We had the MQTT link set up and had written code for the two different types of sensors the night before. We spent our morning wiring the temperature/humidity sensor and the ultrasonic sensor. After inputting the code for the two, we found that they worked perfectly.",
+                    "The last hurdle was the arm and our acrylic chassis. I spent time trying to get our servo code to work since we planned to use two for the claw above and one for the arm portion below. I was able to collaborate with Chen to make our two servo's for the claw portion of our arm sync up perfectly. We later reiterated on our code design by adding speed parameters and slowing down the speed/delay per step.",
+                    "Unfortunately, we faced massive issues with the printing of our acrylic board and instead I had to drill and shave holes into a new wood board that we decided to make slightly bigger after our previous sizing issues on day 2. After doing so, we hastily had to assemble our board without finishing the third servo we had planned to move the base of the arm."
                 ]
             }
         ],
