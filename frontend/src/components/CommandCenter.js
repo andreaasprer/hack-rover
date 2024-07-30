@@ -8,7 +8,7 @@ import Key from './Key'
 import io from 'socket.io-client'
 
 // link to camera stream
-const cameraURL = 'http://192.168.50.135:81/stream'
+const cameraURL = 'http://192.168.50.134:81/stream'
 const socket = io('http://localhost:8000');
 
 const CommandCenter = () => {
@@ -91,28 +91,24 @@ const CommandCenter = () => {
       const handleKeyDown = (event) => {
         const newKeyStates = { ...keyStates }
   
+        // SEND TO MQTT TO TURN ON MOTORS IN DIRECTION
         if (event.key === 'w') {
-            // TODO: SEND TO MQTT TO TURN ON MOTORS FORWARD
             moveForDuration("forward")
             newKeyStates.w = true;
             console.log('up') 
         } else if (event.key === 'a') {
-            // TODO: SEND TO MQTT TO MOVE COUNTER-CLOCKWISE
             moveForDuration("left")
             newKeyStates.a = true
             console.log('left')
         } else if (event.key === 's') {
-            // TODO: SEND TO MQTT TO MOVE DOWN
             moveForDuration("backward")
             newKeyStates.s = true
             console.log('down')
         } else if (event.key === 'd') {
-            // TODO: SENT TO MQTT TO MOVE CLOCKWISE
             moveForDuration("right")
             newKeyStates.d = true
             console.log('right')
         } else if (event.key === 'x') {
-            // TODO: SEND TO MQTT TO STOP
             moveForDuration("stop")
             newKeyStates.x = true
             console.log('stop')
@@ -188,13 +184,6 @@ const CommandCenter = () => {
                 </div>
               </div>
             </div>
-
-
-
-
-
-
-
           </div>
         </div>
 

@@ -5,7 +5,7 @@ const DataTable = ({ temp, hmd, dis }) => {
             <tbody>
                 <tr>
                     <th>Temperature</th>
-                    <th>{temp}</th>
+                    <th>{temp} C</th>
                 </tr>
                 <tr>
                     <th>Humidity</th>
@@ -13,7 +13,7 @@ const DataTable = ({ temp, hmd, dis }) => {
                 </tr>
                 <tr>
                     <th>Distance</th>
-                    <th>{dis}</th>
+                    <th>{dis} cm</th>
                 </tr>
             </tbody>
         </table>
